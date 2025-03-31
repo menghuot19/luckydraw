@@ -1,64 +1,10 @@
-import React, { useState, useEffect  } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import Confetti from "react-confetti";
-import 'bootstrap/dist/css/bootstrap-grid.min.css';
-import { Row, Col } from "react-bootstrap"; // Import Row and Col
-import './../WinnerHistory.css';
-import myIcon from './../assets/dragonart.svg';
-import ConfettiBoom from "react-confetti-boom";
-
-
-const Footers = () => {
-  const [time, setTime] = useState('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const currentTime = new Date();
-      const utcPlus7 = new Date(currentTime.getTime() + 7 * 60 * 60 * 1000); // Convert to UTC +7
-      const formattedTime = utcPlus7.toLocaleString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      });
-      setTime(formattedTime);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000); // Update time every second
-
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
-  }, []);
-
-  return (
-    <footer style={footerStyles.container}>
-      <p style={footerStyles.text}>Menghuot</p>
-      <p style={footerStyles.text}>© 2025 All Rights Reserved.</p>
-      <p style={footerStyles.text}>Current Time (UTC+7): {time}</p>
-    </footer>
-  );
-};
-
-const footerStyles = {
-  container: {
-    width: "100%",
-    padding: "15px",
-    position: "fixed",
-    bottom: "0",
-    left: "0",
-    textAlign: "center",
-    backdropFilter: "blur(10px)",
-    background: "rgba(255, 255, 255, 0.1)",
-    borderTop: "1px solid rgba(255, 255, 255, 0.2)",
-    color: "white",
-    fontSize: "14px",
-  },
-  text: {
-    margin: "5px 0",
-  },
-};
-
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Form, Container } from "react-bootstrap"; // Import necessary components from React Bootstrap
+import React, { useState } from "react";
+import "./../StudentPicker/StudentPicker.css";
 const StudentPicker = () => {
   const [studentText, setStudentText] = useState("");
   const [students, setStudents] = useState([]);
@@ -67,6 +13,7 @@ const StudentPicker = () => {
   const [showModal, setShowModal] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false); // Confetti state
   const [duplicates, setDuplicates] = useState([]); // Store duplicate names
+
   // Function to find duplicate names
   const findDuplicates = (names) => {
     const nameCounts = {};
@@ -87,25 +34,56 @@ const StudentPicker = () => {
     setStudents(names);
     setDuplicates(findDuplicates(names)); // Detect duplicates
   };
-
-
-
-  // Handle file upload
   const handleFile = (file) => {
+    if (!file) {
+      alert("No file selected. Please upload a valid text file.");
+      return;
+    }
+  
+    // Check if the file is a text file
+    if (!file.type.startsWith("text/")) {
+      alert("Invalid file format! Please upload a plain text (.txt) file.");
+      return;
+    }
+  
     const reader = new FileReader();
+  
     reader.onload = (e) => {
-      const text = e.target.result;
-      setStudentText(text);
-      const names = text
-        .split("\n")
-        .map((name) => name.trim())
-        .filter((name) => name !== "");
-
-      setStudents(names);
-      setDuplicates(findDuplicates(names)); // Detect duplicates
+      try {
+        const text = e.target.result;
+        
+        if (!text.trim()) {
+          alert("File is empty or contains invalid content!");
+          return;
+        }
+  
+        setStudentText(text);
+  
+        const names = text
+          .split("\n")
+          .map((name) => name.trim())
+          .filter((name) => name !== "");
+  
+        if (names.length === 0) {
+          alert("No valid names found in the file!");
+          return;
+        }
+  
+        setStudents(names);
+        setDuplicates(findDuplicates(names)); // Detect duplicates
+      } catch (error) {
+        alert("An error occurred while reading the file. Please check the format.");
+        console.error("File reading error:", error);
+      }
     };
+  
+    reader.onerror = () => {
+      alert("Failed to read the file. Please try again.");
+    };
+  
     reader.readAsText(file);
   };
+  
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -152,37 +130,33 @@ const StudentPicker = () => {
   };
 
   return (
-    <div className="main-container">
-      {/* Add HOL pattern background */}
-      <div className="hol-pattern"></div>
-      {showConfetti && <Confetti />} {/* Confetti effect */}
-      <div
-        onDrop={handleDrop}
-        onDragOver={(e) => e.preventDefault()}
+
+    <Container fluid className="d-flex flex-column vh-100 pb-5"
+    
+    onDrop={handleDrop}
+    onDragOver={(e) => e.preventDefault()}    >
+      {showConfetti && <Confetti particleCount={150} colors={["#ff577f", "#ff884b"]} />}
+      <h1 className="text-center mt-4 mb-4" style={{ color: "white" }}>🎓 Picker</h1>
+    
+      <div className="d-flex gap-2 mb-4 mx-auto w-50 w-md-50 w-100-mobile"
+        
       >
-
-      <h2>🎓 Student Picker</h2>
-
-      <textarea
-        rows="10"
-        placeholder="Enter one student name per line"
-        value={studentText}
-        onChange={handleTextChange}
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "10px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-          resize: "vertical",
-        }}
-      />
-
-      <div
+        <Form.Control
+          as="textarea"
+          rows="10"
+          placeholder={`Enter one participant name per line
+Or Drag & Drop list file
+Or Choose file`}
+          value={studentText}
+          onChange={handleTextChange}
+          className="custom-textarea"
+        />
+      </div>
+      <div className="d-flex gap-2 mb-4 w-50 mx-auto w-md-50 text-white"
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
         style={{
-          padding: "20px",
+          padding: "10px",
           border: "2px dashed #ccc",
           borderRadius: "5px",
           textAlign: "center",
@@ -192,20 +166,22 @@ const StudentPicker = () => {
         Drag & Drop a .txt file here
       </div>
 
-      <input
-        type="file"
-        accept=".txt"
-        onChange={handleFileChange}
-        style={{ marginBottom: "10px" }}
-      />
-      <div style={{ marginBottom: "10px", textAlign: "center" }}>
-        <strong>Total Students: {students.length}</strong>
+      <div className="d-flex gap-2 mb-4 w-50 mx-auto w-md-50 text-white">
+        <Form.Control
+          type="file"
+          label="Upload .txt file"
+          accept=".txt"
+          onChange={handleFileChange}
+          style={{ marginBottom: "10px" }}
+        />
       </div>
-
+      <div style={{ marginBottom: "10px", textAlign: "center", color: "white" }}>
+        <strong>Total Participates : {students.length}</strong>
+      </div>
 
       {/* Show duplicate names if any */}
       {duplicates.length > 0 && (
-        <div style={{ color: "red", marginBottom: "10px" }}>
+        <div style={{ color: "red", marginBottom: "10px" }} className="d-flex justify-content-center">
           ⚠️ Duplicate Names Found:
           <ul>
             {duplicates.map((name, index) => (
@@ -218,8 +194,9 @@ const StudentPicker = () => {
       )}
 
 
-      <div style={{ marginBottom: "10px" }}>
-        <label>Number of students to pick: </label>
+
+      <div className="d-flex justify-content-center">
+        <label style={{ color: "white" }}>Number of participate to pick: </label>
         <input
           type="number"
           min="1"
@@ -235,74 +212,75 @@ const StudentPicker = () => {
           }}
         />
       </div>
-      
-      <button
-        onClick={handlePickStudents}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#4CAF50",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        Pick Students
-      </button>
-      
-      <AnimatePresence>
-        {showModal && (
-          <motion.div
-            style={modalStyles.overlay}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              style={modalStyles.modal}
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.5, opacity: 0 }}
-              transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-            >
-              {showConfetti && <Confetti mode="boom" particleCount={50} colors={['#ff577f', '#ff884b']} />}
-              <h3>🎉 Selected Students 🎉</h3>
-              <ul style={{ listStyle: "none", padding: 0 }}>
-                {selectedStudents.map((student, index) => (
-                  <li
-                    key={index}
-                    style={{
-                      margin: "8px 0",
-                      fontSize: "32px",  // Added text size
-                      backgroundColor: "#f0f0f0",
-                      padding: "8px",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    {student}
-                  </li>
-                ))}
-              </ul>
-              <div style={modalStyles.buttonRow}>
-                <button onClick={handleDownload} style={modalStyles.downloadButton}>
-                  📥 Download Result
-                </button>
-                <button onClick={closeModal} style={modalStyles.closeButton}>
-                  ❌ Close
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
-      <Footers />
-
+      <div className="d-flex justify-content-center" >
+        <Button
+          variant="success"
+          onClick={handlePickStudents}
+          // style={{
+          //   padding: "10px 20px",
+          // }}
+          size="sm"
+        >
+          Pick Participate
+        </Button>
       </div>
-    </div>
-   
+
+
+
+      {showModal && (
+        <motion.div
+          style={modalStyles.overlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            style={modalStyles.modal}
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.5, opacity: 0 }}
+            transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+          >
+            {showConfetti && <Confetti mode="boom" particleCount={50} colors={['#ff577f', '#ff884b']} />}
+            <h3>🎉 Selected Students 🎉</h3>
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              {selectedStudents.map((student, index) => (
+                <li
+                  key={index}
+                  style={{
+                    margin: "8px 0",
+                    fontSize: "32px",
+                    backgroundColor: "#f0f0f0",
+                    padding: "8px",
+                    borderRadius: "4px",
+                  }}
+                >
+                  {student}
+                </li>
+              ))}
+            </ul>
+            <div style={modalStyles.buttonRow}>
+              <Button variant="primary" onClick={handleDownload} style={modalStyles.downloadButton} size="sm">
+                📥 Download Result
+              </Button>
+              <Button variant="danger" onClick={closeModal} style={modalStyles.closeButton} size="sm">
+                ❌ Close
+              </Button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </Container>
+
   );
 };
+
 const modalStyles = {
   overlay: {
     position: "fixed",
@@ -323,11 +301,10 @@ const modalStyles = {
     textAlign: "center",
     color: "black",
     width: "90%",
-    // maxWidth: "400px",
-    maxHeight: "80vh", // Set a maximum height for the modal
+    maxHeight: "80vh",
     boxShadow: "0px 4px 15px rgba(0,0,0,0.2)",
     overflowX: "hidden",
-    overflowY: "auto", // Allow scrolling if content exceeds the height
+    overflowY: "auto",
   },
   buttonRow: {
     display: "flex",
@@ -338,20 +315,16 @@ const modalStyles = {
   closeButton: {
     flex: 1,
     padding: "10px 20px",
-    backgroundColor: "#e74c3c",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
   },
   downloadButton: {
     flex: 1,
     padding: "10px 20px",
-    backgroundColor: "#3498db",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
   },
 };
+
+
+
+
+
 export default StudentPicker;
+

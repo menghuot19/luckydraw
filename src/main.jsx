@@ -1,9 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
-import StudentPicker from './StudentPicker/StudentPicker.jsx';
+// import "./index.css";
+import App from './App.jsx';
+// import LotterySpinner from './LotterySpiner/LotterySpiner.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <StudentPicker/>
+    {/* <StudentPicker/> */}
+    <App/>
+
   </StrictMode>,
 )

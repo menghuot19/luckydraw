@@ -1,8 +1,8 @@
 const Footers = () => {
     return (
       <footer style={footerStyles.container}>
-        <p style={footerStyles.text}>Developer: Menghuot</p>
-        <p style={footerStyles.text}>© 2024 All Rights Reserved.</p>
+        <p style={footerStyles.text}>Menghuot</p>
+        <p style={footerStyles.text}>© 2025 All Rights Reserved.</p>
       </footer>
     );
   };
@@ -25,4 +25,5 @@ const Footers = () => {
       margin: "5px 0",
     },
   };
+export default  Footers;
   

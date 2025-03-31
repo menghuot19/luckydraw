@@ -1,0 +1,12 @@
+.custom-textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Full width on mobile */
+  @media (max-width: 768px) {
+    .w-100-mobile {
+      width: 100% !important;
+    }
+  }
