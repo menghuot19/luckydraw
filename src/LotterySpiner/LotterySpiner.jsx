@@ -5,6 +5,8 @@ import Confetti from "react-confetti";
 import "./LotterySpin.css";
 import { Button, Form, Modal, Card, ListGroup, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AngPao from "../AngPao/AngPao";
+import WaterBottle from "../Water/WaterBottle";
 const LotteryWheel = () => {
   const [items, setItems] = useState([]);
   const [input, setInput] = useState("");
@@ -266,7 +268,8 @@ const LotteryWheel = () => {
           Restart Game
         </Button>
       </div>
-
+      {/* <AngPao message="Happy New Year! 🎉🎊" /> */}
+      {/* <WaterBottle message="Happy New Year! 🎉🎊" /> */}
       <br />
       <br />
       <br />

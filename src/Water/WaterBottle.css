@@ -1,0 +1,34 @@
+.water-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+  }
+  
+  .bottle {
+    font-size: 50px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .bottle:active {
+    transform: rotate(-10deg);
+  }
+  
+  .water-flow {
+    width: 20px;
+    background-color: #00aaff;
+    position: relative;
+    top: 10px;
+    border-radius: 10px;
+  }
+  
+  .water-message {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0044cc;
+  }
+  

@@ -1,0 +1,74 @@
+.angpao-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    perspective: 1000px; /* 3D Effect */
+  }
+  
+  .angpao-envelope {
+    position: relative;
+    width: 160px;
+    height: 220px;
+    background: linear-gradient(180deg, #d32f2f, #b71c1c);
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid gold;
+  }
+  
+  .angpao-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: darkred;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transform-origin: top;
+  }
+  
+  .gold-pattern {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 10px;
+    background: gold;
+    border-radius: 5px;
+  }
+  
+  .angpao-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: gold;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .angpao-message {
+    font-size: 22px;
+    font-weight: bold;
+    color: gold;
+  }
+  
+  .click-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: gold;
+  }
+  
+  .gold-coin {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+  }
+  

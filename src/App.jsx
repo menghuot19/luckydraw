@@ -28,6 +28,7 @@ const App = () => {
         <main className="content">
           <Routes>
             <Route exact path="/" element={<LotterySpiner />} />
+            
             <Route path="/stupicker" element={<StudentPicker />} />
           </Routes>
         </main>
