@@ -275,6 +275,12 @@ const LotteryWheel = () => {
       <br />
       <br />
       <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
 
     </Container>
 
