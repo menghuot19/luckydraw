@@ -268,7 +268,7 @@ const LotteryWheel = () => {
           Restart Game
         </Button>
       </div>
-      {/* <AngPao message="Happy New Year! 🎉🎊" /> */}
+      <AngPao message="Happy New Year! 🎉🎊" />
       {/* <WaterBottle message="Happy New Year! 🎉🎊" /> */}
       <br />
       <br />

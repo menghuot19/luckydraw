@@ -2,11 +2,26 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import "./AngPao.css";
 
-const AngPao = ({ message }) => {
+
+
+const AngPao = ({ message, size = "medium", fontSize = "14px" }) => {
   const [opened, setOpened] = useState(false);
 
+  // Define size options
+  const sizeStyles = {
+    small: { width: "100px", height: "140px" },
+    medium: { width: "120px", height: "160px" },
+    large: { width: "150px", height: "200px" },
+  };
+
+  // Handle font size increase effect when opened
+  const textVariants = {
+    initial: { fontSize },
+    animate: { fontSize: `${parseInt(fontSize) * 2}px`, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="angpao-container">
+    <div className="angpao-container" style={{ ...sizeStyles[size] }}>
       <motion.div
         className="angpao-envelope"
         whileHover={{ rotate: [-2, 2, -2], transition: { duration: 0.3, repeat: Infinity, repeatType: "reverse" } }}
@@ -30,9 +45,9 @@ const AngPao = ({ message }) => {
           ) : (
             <motion.div
               className="angpao-message"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              initial="initial"
+              animate="animate"
+              variants={textVariants}
             >
               {message}
             </motion.div>

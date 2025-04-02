@@ -4,6 +4,7 @@
     align-items: center;
     height: 300px;
     perspective: 1000px; /* 3D Effect */
+    /* padding-bottom: 8px; */
   }
   
   .angpao-envelope {
