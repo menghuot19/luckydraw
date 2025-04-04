@@ -7,6 +7,34 @@ import { Button, Form, Modal, Card, ListGroup, Container } from "react-bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AngPao from "../AngPao/AngPao";
 import WaterBottle from "../Water/WaterBottle";
+
+
+const UserManual = () => {
+  return (
+    <div style={{ padding: "20px", backgroundColor: "black", borderRadius: "8px",color:"white", maxWidth: "800px", margin: "20px auto" }}>
+      <h2 className="text-center mb-4">📘 User Manual</h2>
+      <h4>1. Enter Items to Spin</h4>
+      <p>To get started, input the name or item you want to add to the spinner in the "Enter item..." text box and click **Add**.</p>
+      <p>You can add as many items as needed. You must add at least two items to start spinning.</p>
+
+      <h4>2. Ensure Unique Results (Optional)</h4>
+      <p>If you want to ensure that each item is selected only once, check the box for **"Ensure unique results"**. After all items have been selected, you'll need to reset the game to spin again.</p>
+
+      <h4>3. Start the Spin</h4>
+      <p>Once you're ready, click **Spin & Pick Winner** to start the spin. If you've enabled unique results and all items have been selected, you'll be prompted to reset the game first.</p>
+
+      <h4>4. Stop Spinning & View the Winner</h4>
+      <p>When the spin stops, the winner will be displayed in a modal along with a **confetti animation** to celebrate the victory.</p>
+      <h4>5. Winner History</h4>
+      <p>All winners are recorded with their name and the time they were selected. You can view the winner history and download it as a **text file** by clicking the **"Download Result"** button.</p>
+      <h4>6. Reset Game</h4>
+      <p>Click **Restart Game** to clear all items, reset the spin count, and start fresh. If you're using **unique results**, you'll need to reset the game after all items have been selected.</p>
+    </div>
+  );
+};
+
+
+
 const LotteryWheel = () => {
   const [items, setItems] = useState([]);
   const [input, setInput] = useState("");
@@ -268,8 +296,8 @@ const LotteryWheel = () => {
           Restart Game
         </Button>
       </div>
-      <AngPao message="Happy New Year! 🎉🎊" />
-      {/* <WaterBottle message="Happy New Year! 🎉🎊" /> */}
+      <UserManual/>
+  
       <br />
       <br />
       <br />

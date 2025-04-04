@@ -11,7 +11,8 @@ const Footers = () => {
     container: {
       width: "100%",
       padding: "15px",
-      position: "fixed",
+      // position: "fixed",
+      position: "absolute",
       bottom: "0",
       left: "0",
       textAlign: "center",

@@ -20,7 +20,7 @@ const App = () => {
           <Nav className="ms-auto">
           <Nav.Link as={NavLink} to="/" className="px-3 custom-navlink">📀 Student Spinner</Nav.Link>
           <Nav.Link as={NavLink} to="/stupicker" className="px-3 custom-navlink">🎡 Student Picker</Nav.Link>
-          <Nav.Link as={NavLink} to="/angpao" className="px-3 custom-navlink">🧧 AngPao Price</Nav.Link>
+          <Nav.Link as={NavLink} to="/angpao" className="px-3 custom-navlink">🧧 AngPao Prize</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
