@@ -193,7 +193,7 @@ const LotteryWheel = () => {
           colors={["#ff577f", "#ff884b", "#ffcc00", "#00cc99", "#3399ff", "#9966ff", "#ff66cc"]}
         />
       )}
-      <h1 className="text-center mt-4 mb-4" style={{ color: "white" }}>🎡 Student Spinner</h1>
+      <h1 className="text-center mt-4 mb-4" style={{ color: "white" }}>🎡 Spinner</h1>
 
       <div className="d-flex gap-2 mb-4 w-50 mx-auto w-md-50">
         <Form.Control

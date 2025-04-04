@@ -30,8 +30,8 @@ const App = () => {
             <Navbar.Toggle onClick={() => setExpanded(expanded ? false : true)} />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto">
-                <Nav.Link as={NavLink} to="/" className="px-3 custom-navlink" onClick={closeNav}>📀 Student Spinner</Nav.Link>
-                <Nav.Link as={NavLink} to="/stupicker" className="px-3 custom-navlink" onClick={closeNav}>🎡 Student Picker</Nav.Link>
+                <Nav.Link as={NavLink} to="/" className="px-3 custom-navlink" onClick={closeNav}>📀 Spinner</Nav.Link>
+                <Nav.Link as={NavLink} to="/stupicker" className="px-3 custom-navlink" onClick={closeNav}>🎡 Picker</Nav.Link>
                 <Nav.Link as={NavLink} to="/angpao" className="px-3 custom-navlink" onClick={closeNav}>🧧 AngPao Prize</Nav.Link>
               </Nav>
             </Navbar.Collapse>

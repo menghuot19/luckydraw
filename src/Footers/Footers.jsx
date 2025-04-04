@@ -5,12 +5,12 @@ const Footers = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth <= 768; // Detect mobile devices
-      setIsKeyboardVisible(isMobile && window.innerHeight < 500); // Adjust height threshold as needed
+      const isMobile = window.innerWidth <= 768;
+      setIsKeyboardVisible(isMobile && window.innerHeight < 500);
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Run initially
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -19,11 +19,22 @@ const Footers = () => {
     <footer
       style={{
         ...footerStyles.container,
-        position: isKeyboardVisible ? "relative" : "absolute", // Move up when keyboard is open
+        position: isKeyboardVisible ? "relative" : "absolute",
       }}
     >
       <p style={footerStyles.text}>Menghuot</p>
       <p style={footerStyles.text}>© 2025 All Rights Reserved.</p>
+      <p style={footerStyles.text}>
+        Visit us at:{" "}
+        <a
+          href="https://scilabforyou.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={footerStyles.link}
+        >
+          SciLabForYou
+        </a>
+      </p>
     </footer>
   );
 };
@@ -43,6 +54,11 @@ const footerStyles = {
   },
   text: {
     margin: "5px 0",
+  },
+  link: {
+    color: "#FFD700", // Gold color for visibility
+    textDecoration: "none",
+    fontWeight: "bold",
   },
 };
 
