@@ -65,7 +65,7 @@ export default function CountdownTimer() {
 
           // Play sound
           if (soundRef.current) soundRef.current.play();
-
+          setDirection(null); // ✅ Reset direction so you can start again
           return target;
         }
 
