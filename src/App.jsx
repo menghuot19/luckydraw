@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route, Link,NavLink } from "react-rout
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./App.css";
 import PrizeGenerator from "./PrizeGenerator/PrizeGenerator.jsx";
+import CountdownTimer from "./Countdown/Countdown.jsx";
 
 
 const App = () => {
@@ -32,7 +33,9 @@ const App = () => {
               <Nav className="ms-auto">
                 <Nav.Link as={NavLink} to="/" className="px-3 custom-navlink" onClick={closeNav}>📀 Spinner</Nav.Link>
                 <Nav.Link as={NavLink} to="/stupicker" className="px-3 custom-navlink" onClick={closeNav}>🎡 Picker</Nav.Link>
-                <Nav.Link as={NavLink} to="/angpao" className="px-3 custom-navlink" onClick={closeNav}>🧧 AngPao Prize</Nav.Link>
+                <Nav.Link as={NavLink} to="/angpao" className="px-3 custom-navlink" onClick={closeNav}>🧧 AngPao </Nav.Link>
+                <Nav.Link as={NavLink} to="/countdowntimer" className="px-3 custom-navlink" onClick={closeNav}>⏳ Countdown </Nav.Link>
+
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -43,6 +46,7 @@ const App = () => {
             <Route exact path="/" element={<LotterySpiner />} />
             <Route path="/angpao" element={<PrizeGenerator />} />
             <Route path="/stupicker" element={<StudentPicker />} />
+            <Route path="/countdowntimer" element={<CountdownTimer/>}/>
           </Routes>
         </main>
 
