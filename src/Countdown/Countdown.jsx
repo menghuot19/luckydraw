@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import beepSound from '../assets/beep-07.wav'; // adjust the path as needed
+
 import {
   Container,
   Card,
@@ -152,7 +154,7 @@ export default function CountdownTimer() {
       {/* Audio */}
       <audio
         ref={soundRef}
-        src="src/assets/beep-07.wav"
+        src={beepSound}
         preload="auto"
       />
 
